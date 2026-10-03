@@ -1,0 +1,11 @@
+node_modules/
+firebase-debug.log
+firebase-debug.*.log
+.runtimeconfig.json
+*.local
+.env
+.env.*
+!.env.example
+secrets/
+service-account*.json
+*-firebase-adminsdk-*.json

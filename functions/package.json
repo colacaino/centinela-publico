@@ -1,0 +1,30 @@
+{
+  "name": "functions",
+  "description": "Backend seguro v2 de CENTINELA",
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "scripts": {
+    "serve": "firebase emulators:start --project demo-centinela --only auth,firestore,functions",
+    "test": "node --test test/unit.test.js",
+    "test:emulator": "npx --yes firebase-tools@15.28.1 emulators:exec --project demo-centinela --only auth,firestore \"node --test --test-concurrency=1 test/rules.test.js test/backend.test.js\"",
+    "check": "node --check index.js && node --test test/unit.test.js",
+    "migrate:v2": "node scripts/migrate_v2.js",
+    "deploy:v2": "firebase deploy --only functions:crearIncidenteV2,functions:reconocerIncidenteV2,functions:resolverIncidenteV2,functions:cancelarIncidenteV2,functions:registrarInstalacionV2,functions:desactivarInstalacionV2,functions:crearUsuarioV2,functions:actualizarUsuarioV2,functions:establecerUsuarioActivoV2,functions:eliminarUsuarioV2,functions:cambiarContrasenaInicialV2,functions:notificarIncidenteV2,functions:expirarIncidentesV2,functions:alertaDesdeDispositivoV2",
+    "audit": "npm audit --audit-level=high",
+    "audit:prod": "npm audit --omit=dev --audit-level=high",
+    "audit:strict": "npm audit --audit-level=low",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "@google-cloud/secret-manager": "^7.0.0",
+    "firebase-admin": "^14.3.0",
+    "firebase-functions": "^7.3.2"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.2",
+    "firebase": "^12.18.0"
+  },
+  "private": true
+}

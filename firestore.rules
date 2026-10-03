@@ -1,0 +1,96 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function active() {
+      return signedIn() &&
+        request.auth.token.active == true &&
+        request.auth.token.sedeId is string &&
+        request.auth.token.role in ['docente', 'inspector', 'direccion', 'admin'];
+    }
+
+    function roleIs(role) {
+      return active() && request.auth.token.role == role;
+    }
+
+    function sameSite(data) {
+      return active() && data.sedeId == request.auth.token.sedeId;
+    }
+
+    function receivesLevel(level) {
+      return (level == '1' && request.auth.token.role in ['inspector', 'admin']) ||
+        (level in ['2', '3'] && request.auth.token.role in ['inspector', 'direccion', 'admin']);
+    }
+
+    function canReadIncident(data) {
+      return sameSite(data) && (
+        data.emisorUid == request.auth.uid ||
+        roleIs('admin') ||
+        receivesLevel(data.nivel)
+      );
+    }
+
+    match /usuarios/{userId} {
+      allow get, list: if active() && (
+        request.auth.uid == userId ||
+        (roleIs('admin') && sameSite(resource.data))
+      );
+      allow create, update, delete: if false;
+
+      match /instalaciones/{installationId} {
+        allow get, list: if active() && request.auth.uid == userId;
+        allow create, update, delete: if false;
+      }
+    }
+
+    match /sedes/{siteId} {
+      allow get: if active() && siteId == request.auth.token.sedeId;
+      allow list, create, update, delete: if false;
+
+      match /salas/{roomId} {
+        allow get, list: if active() && siteId == request.auth.token.sedeId;
+        allow create, update, delete: if false;
+      }
+    }
+
+    match /incidentes/{incidentId} {
+      allow get, list: if canReadIncident(resource.data);
+      allow create, update, delete: if false;
+
+      match /eventos/{eventId} {
+        allow get, list: if canReadIncident(
+          get(/databases/$(database)/documents/incidentes/$(incidentId)).data
+        );
+        allow create, update, delete: if false;
+      }
+    }
+
+    // Colección del prototipo. Se conserva solo para migración/archivo y queda
+    // cerrada para impedir que un cliente antiguo eluda el backend v2.
+    match /alertas/{alertId} {
+      allow read, write: if false;
+    }
+
+    match /dispositivos/{deviceId} {
+      allow read, write: if false;
+      match /{document=**} {
+        allow read, write: if false;
+      }
+    }
+
+    match /limites/{limitId} {
+      allow read, write: if false;
+    }
+
+    match /despachosNotificacion/{dispatchId} {
+      allow read, write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

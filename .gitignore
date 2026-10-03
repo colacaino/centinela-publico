@@ -1,0 +1,115 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Secretos y credenciales locales (nunca versionar valores reales)
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+secrets/
+**/secrets/
+service-account*.json
+*-firebase-adminsdk-*.json
+**/config.h
+!**/config.example.h
+
+# Firma Android de producción
+android/key.properties
+**/*.jks
+**/*.keystore
+
+# Reportes locales que puedan incluir metadatos operativos
+*.sarif
+test-results/
+
+# Archivos temporales de bloqueo de Microsoft Office
+~$*.doc
+~$*.docx
+~$*.xls
+~$*.xlsx
+~$*.ppt
+~$*.pptx
+
+# Material academico y preparacion local de publicaciones
+/DOCUMENTACION_CENTINELA/
+/.publicacion_local/
+*.docx
+*.pdf
+/INFORME_*
+/INDICE_*
+/RESUMEN_*
+/DOCUMENTO_GENERAL_*
+/ANALISIS_INTEGRAL_CENTINELA.md
+/CENTINELA_MEJORAS_IMPLEMENTADAS.md
+/CENTINELA_VALIDACION_STAGING.md
+
+# Credenciales de servicio y exportaciones de usuarios
+**/serviceAccount*.json
+**/service_account*.json
+**/service-account*.json
+**/*firebase-adminsdk*.json
+**/crearUsuariosPrueba.js
+**/usuarios*.json
+**/users-backup*.json
+**/users-export*.json
+**/*.pem
+**/*.p12
+**/*.pfx
+
+# Configuracion Firebase propia de cada entorno
+/.firebaserc
+/android/app/google-services.json
+/lib/firebase_options.dart
+**/GoogleService-Info.plist
+
+# Dependencias y compilaciones locales
+**/node_modules/
+**/__pycache__/
+**/.gradle/
+*.apk
+*.aab

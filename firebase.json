@@ -1,0 +1,54 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local",
+        "serviceAccount*.json",
+        "service-account*.json",
+        "service_account*.json",
+        "*firebase-adminsdk*.json",
+        "crearUsuariosPrueba.js",
+        "usuarios*.json",
+        "secrets"
+      ]
+    }
+  ],
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "hosting",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {"key": "X-Content-Type-Options", "value": "nosniff"},
+          {"key": "Referrer-Policy", "value": "no-referrer"},
+          {"key": "Content-Security-Policy", "value": "default-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"}
+        ]
+      }
+    ]
+  },
+  "auth": {
+    "providers": {
+      "anonymous": false,
+      "emailPassword": true
+    }
+  },
+  "emulators": {
+    "auth": {"port": 9099},
+    "functions": {"port": 5001},
+    "firestore": {"port": 8085},
+    "ui": {"enabled": true, "port": 4000},
+    "singleProjectMode": true
+  }
+}

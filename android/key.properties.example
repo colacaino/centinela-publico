@@ -1,0 +1,5 @@
+# Copia como android/key.properties. Nunca subas el archivo real ni el keystore.
+storePassword=REEMPLAZAR
+keyPassword=REEMPLAZAR
+keyAlias=centinela
+storeFile=C:/ruta/absoluta/centinela-release.jks

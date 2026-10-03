@@ -1,0 +1,10 @@
+:root { color-scheme: light; font-family: system-ui, sans-serif; --red: #a31325; --ink: #202124; }
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); background: #f7f7f8; line-height: 1.55; }
+header, main, footer { max-width: 780px; margin: auto; padding: 24px; }
+header { padding-top: 64px; }
+h1 { color: var(--red); letter-spacing: .12em; }
+h2 { margin-top: 2rem; }
+.notice { border-left: 5px solid var(--red); background: white; padding: 16px; }
+a { color: var(--red); }
+footer { font-size: .9rem; color: #5f6368; }

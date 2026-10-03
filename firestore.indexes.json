@@ -1,0 +1,65 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "incidentes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "estado", "order": "ASCENDING"},
+        {"fieldPath": "expiresAt", "order": "ASCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "incidentes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "sedeId", "order": "ASCENDING"},
+        {"fieldPath": "nivel", "order": "ASCENDING"},
+        {"fieldPath": "createdAt", "order": "DESCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "incidentes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "sedeId", "order": "ASCENDING"},
+        {"fieldPath": "estado", "order": "ASCENDING"},
+        {"fieldPath": "createdAt", "order": "DESCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "incidentes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "sedeId", "order": "ASCENDING"},
+        {"fieldPath": "emisorUid", "order": "ASCENDING"},
+        {"fieldPath": "createdAt", "order": "DESCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "usuarios",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "sedeId", "order": "ASCENDING"},
+        {"fieldPath": "nombre", "order": "ASCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "instalaciones",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {"fieldPath": "sedeId", "order": "ASCENDING"},
+        {"fieldPath": "role", "order": "ASCENDING"},
+        {"fieldPath": "active", "order": "ASCENDING"}
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "instalaciones",
+      "fieldPath": "fcmToken",
+      "indexes": [
+        {"order": "ASCENDING", "queryScope": "COLLECTION_GROUP"}
+      ]
+    }
+  ]
+}
